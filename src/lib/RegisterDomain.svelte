@@ -1,5 +1,5 @@
-<script>
-  export let contract;
+<script lang="ts">
+  export let contract: any;
 
   let domain = "";
   let aRecord = "";
@@ -26,7 +26,7 @@
       status = `Domain "${domain}" registered successfully!`;
       statusType = "success";
       domain = "";
-    } catch (e) {
+    } catch (e: any) {
       const errorMessage = e.shortMessage || e.message || "Registration failed";
       status = errorMessage;
       statusType = "error";
@@ -54,7 +54,7 @@
       status = `A record updated for "${domain}"!`;
       statusType = "success";
       aRecord = "";
-    } catch (e) {
+    } catch (e: any) {
       const errorMessage = e.shortMessage || e.message || "Update failed";
       status = errorMessage;
       statusType = "error";

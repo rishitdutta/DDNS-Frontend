@@ -1,8 +1,8 @@
-<script>
-  export let contract;
+<script lang="ts">
+  export let contract: any;
 
   let searchDomain = "";
-  let records = null;
+  let records: any = null;
   let loading = false;
   let error = "";
 
@@ -29,7 +29,7 @@
       } else {
         error = "Domain not found";
       }
-    } catch (e) {
+    } catch (e: any) {
       const errorMessage = e.message || "Failed to fetch domain";
       error = errorMessage;
     }
@@ -37,12 +37,12 @@
     loading = false;
   }
 
-  function formatAddress(addr) {
+  function formatAddress(addr: string) {
     if (!addr) return "";
     return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
   }
 
-  function handleKeyPress(event) {
+  function handleKeyPress(event: KeyboardEvent) {
     if (event.key === "Enter") {
       search();
     }

@@ -1,9 +1,9 @@
-<script>
-  import { createEventDispatcher } from "svelte";
+<script lang="ts">
+  import { createEventDispatcher, onMount } from "svelte";
   import { ethers } from "ethers";
   import { CONTRACT_ADDRESS, CONTRACT_ABI } from "../config.js";
 
-  export let wallet;
+  export let wallet: any;
 
   const dispatch = createEventDispatcher();
   let error = "";
@@ -35,7 +35,7 @@
       );
 
       dispatch("connect", { address, signer, contract });
-    } catch (e) {
+    } catch (e: any) {
       error = e.message || "Connection failed";
     }
 
@@ -46,7 +46,7 @@
     dispatch("disconnect");
   }
 
-  function formatAddress(addr) {
+  function formatAddress(addr: string) {
     if (!addr) return "";
     return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
   }

@@ -1,15 +1,15 @@
-<script>
+<script lang="ts">
   import ConnectWallet from "./lib/ConnectWallet.svelte";
   import RegisterDomain from "./lib/RegisterDomain.svelte";
   import ViewDomain from "./lib/ViewDomain.svelte";
 
-  let wallet = {
+  let wallet: any = {
     address: null,
     signer: null,
     contract: null,
   };
 
-  function handleWalletConnect(event) {
+  function handleWalletConnect(event: CustomEvent) {
     wallet = event.detail;
   }
 
