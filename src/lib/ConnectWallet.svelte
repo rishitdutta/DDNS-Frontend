@@ -56,7 +56,7 @@
   <h2>Wallet Connection</h2>
 
   {#if !hasMetaMask}
-    <div class="status error" style="margin-top: 1rem;">
+    <div class="status error mt-4">
       MetaMask not found.
       <a
         href="https://metamask.io/download/"
@@ -67,27 +67,18 @@
       </a> to continue.
     </div>
   {:else if wallet.address}
-    <div
-      style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;"
-    >
+    <div class="flex justify-between items-center mt-4">
       <div>
-        <p style="color: #888; font-size: 0.9rem;">Connected Address</p>
-        <p
-          style="font-family: 'Courier New', monospace; font-size: 1.05rem; margin-top: 0.25rem;"
-        >
+        <p class="text-muted text-sm">Connected Address</p>
+        <p class="font-mono text-lg mt-1">
           {formatAddress(wallet.address)}
         </p>
       </div>
-      <button
-        on:click={disconnect}
-        style="background: #2a2a2a; color: #e0e0e0;"
-      >
-        Disconnect
-      </button>
+      <button on:click={disconnect} class="btn-secondary"> Disconnect </button>
     </div>
     <div class="status success">✓ Wallet Connected</div>
   {:else}
-    <button on:click={connect} disabled={loading} style="margin-top: 1rem;">
+    <button on:click={connect} disabled={loading} class="mt-4">
       {loading ? "Connecting..." : "Connect MetaMask"}
     </button>
     {#if error}

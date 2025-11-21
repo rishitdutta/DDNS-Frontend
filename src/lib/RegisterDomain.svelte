@@ -67,9 +67,9 @@
 <div class="card">
   <h2>Register & Manage Domain</h2>
 
-  <div style="margin-top: 1.5rem; margin-bottom: 2rem;">
-    <h3 style="margin-bottom: 1rem;">Register New Domain</h3>
-    <div style="margin-bottom: 1rem;">
+  <div class="mt-6 mb-8">
+    <h3 class="mb-4">Register New Domain</h3>
+    <div class="mb-4">
       <label for="register-domain">Domain Name</label>
       <input
         id="register-domain"
@@ -84,9 +84,9 @@
     </button>
   </div>
 
-  <div style="border-top: 1px solid #2a2a2a; padding-top: 2rem;">
-    <h3 style="margin-bottom: 1rem;">Update A Record</h3>
-    <div style="margin-bottom: 1rem;">
+  <div class="border-t border-border pt-8">
+    <h3 class="mb-4">Update A Record</h3>
+    <div class="mb-4">
       <label for="update-domain">Domain Name</label>
       <input
         id="update-domain"
@@ -96,7 +96,7 @@
         disabled={loading}
       />
     </div>
-    <div style="margin-bottom: 1rem;">
+    <div class="mb-4">
       <label for="a-record">IP Address (A Record)</label>
       <input
         id="a-record"

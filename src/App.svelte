@@ -9,6 +9,26 @@
     contract: null,
   };
 
+  let backendStatus = "checking";
+
+  // Check backend health on load
+  async function checkBackend() {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL || "http://localhost:3000"}/health`
+      );
+      if (response.ok) {
+        backendStatus = "online";
+      } else {
+        backendStatus = "offline";
+      }
+    } catch (e) {
+      backendStatus = "offline";
+    }
+  }
+
+  checkBackend();
+
   function handleWalletConnect(event: CustomEvent) {
     wallet = event.detail;
   }
@@ -23,11 +43,18 @@
 </script>
 
 <main class="container">
-  <header style="margin-bottom: 3rem; text-align: center;">
+  <header class="mb-12 text-center">
     <h1>Blockchain DNS</h1>
-    <p style="color: #888; font-size: 1.05rem; margin-top: 0.5rem;">
-      Decentralized Domain Name System
-    </p>
+    <p class="text-muted text-lg mt-2">Decentralized Domain Name System</p>
+    {#if backendStatus !== "checking"}
+      <p
+        class="text-sm mt-3 {backendStatus === 'online'
+          ? 'text-success'
+          : 'text-error'}"
+      >
+        Backend: {backendStatus === "online" ? "🟢 Online" : "🔴 Offline"}
+      </p>
+    {/if}
   </header>
 
   <ConnectWallet
@@ -41,9 +68,7 @@
     <ViewDomain contract={wallet.contract} />
   {/if}
 
-  <footer
-    style="text-align: center; margin-top: 4rem; color: #666; font-size: 0.85rem;"
-  >
+  <footer class="text-center mt-16 text-muted text-sm">
     Built with Svelte + Ethers.js • Ethereum Sepolia Testnet
   </footer>
 </main>
